@@ -8,9 +8,6 @@ namespace CustomListClassTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
-        {
-            [TestMethod]
         public void Add_Int_ToEndOfArray()
         {
             //Arrange
@@ -82,8 +79,117 @@ namespace CustomListClassTest
             Assert.AreEqual(myList[0], listToAdd);
         }
 
+        [TestMethod]
+        public void Remove_Int_FirstMatchingIntRemoved()
+        {
+            //Arrange
+            MyList<int> intList = new MyList<int>() { 1, 0, 2, 0, 3 };
+            int intitialValueAtIndexTwo = intList[2];
+            //Act
+            intList.Remove(0);
+            //remove the first instance of value 0
+            //expected result intList = [1, 2, 0, 3]
+            //Assert
+            Assert.AreEqual(intitialValueAtIndexTwo, intList[1]); //intList[1] = 2;
+        }
 
+        [TestMethod]
+        public void Remove_Int_OtherMatchingIntsNotRemoved()
+        {
+            //Arrange
+            MyList<int> intList = new MyList<int>() { 1, 0, 2, 0, 3 };
 
+            //Act
+            intList.Remove(0);
+            int expectedResult = 0;
+            //remove the first instance of value 0
+            //expected result intList = [1, 2, 0, 3]
+            //Assert
+            Assert.AreEqual(intList[2], expectedResult); //intList[2] = 0;
+        }
+
+        [TestMethod]
+        public void Remove_Bool_FirstMatchingBoolRemoved()
+        {
+            //Arrange
+            MyList<bool> boolList = new MyList<bool>() { false, true, false, true, false };
+            //Act
+            boolList.Remove(true);
+            //Assert
+            Assert.AreEqual(boolList[1], false);
+        }
+
+        [TestMethod]
+        public void Remove_Double_FirstMatchingDoubleRemoved()
+        {
+            //Arrange
+            MyList<double> doubleList = new MyList<double>() { 1.1, 2.2, 3.3, 4.4, 5.5 };
+            //Act
+            doubleList.Remove(2.2);
+            //Assert
+            Assert.AreEqual(doubleList[1], 3.3);
+        }
+
+        [TestMethod]
+        public void Remove_Array_FirstMatchingArrayRemoved()
+        {
+            //Arrange
+            int[] array1 = new int[3] { 1, 2, 3 };
+            int[] array2 = new int[3] { 4, 5, 6 };
+            int[] array3 = new int[3] { 7, 8, 9 };
+            MyList<Array> arrayList = new MyList<Array>() { array1, array2, array3 };
+            //Act
+            arrayList.Remove(array2);
+            //Assert
+            Assert.AreEqual(arrayList[1], array3);
+        }
+
+        [TestMethod]
+        public void Remove_CheckReturn_True()
+        {
+            //Arrange
+            MyList<double> doubleList = new MyList<double>() { 1.1, 2.2, 3.3, 4.4, 5.5 };
+            bool expectedReturnValue = true;
+            //Act
+            bool returnValue = doubleList.Remove(2.2);
+            //Assert
+            Assert.AreEqual(returnValue, expectedReturnValue);
+        }
+
+        [TestMethod]
+        public void Remove_CheckReturn_False()
+        {
+            //Arrange
+            MyList<double> doubleList = new MyList<double>() { 1.1, 2.2, 3.3, 4.4, 5.5 };
+            bool expectedReturnValue = false;
+            //Act
+            bool returnValue = doubleList.Remove(2.3);
+            //Assert
+            Assert.AreEqual(returnValue, expectedReturnValue);
+        }
+
+        [TestMethod]
+        public void Remove_Count_Decrememnts()
+        {
+            //Arrange
+            MyList<int> intList = new MyList<int>() { 1, 0, 2, 0, 3 };
+            //Act
+            intList.Remove(0);
+            //Assert
+            Assert.AreEqual(intList.Count, 4);
+        }
+
+        //[TestMethod]
+        //I want the custom list class to be iterable.
+        //public void Remove_Count_Decrememnts()
+        //{
+        //    //Arrange
+        //    MyList<int> intList = new MyList<int>() { 1, 0, 2, 0, 3 };
+        //    //Act
+        //    intList.Remove(0);
+        //    //Assert
+        //    Assert.AreEqual(intList.Count, 4);
+        //}
 
     }
 }
