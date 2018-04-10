@@ -265,6 +265,59 @@ namespace CustomListClassTest
             Assert.AreEqual(expected[3], result[3]);
         }
 
+        [TestMethod]
+        public void MinusOverload_SubtractIntLists_MatchValuesRemoved()
+        {
+            //Arrange
+            MyList<int> myList1 = new MyList<int>() { 1, 2, 3, 4, 5, 6 };
+            MyList<int> myList2 = new MyList<int>() { 1, 3, 5 };
+            MyList<int> expected = new MyList<int>() { 2, 4, 6 };
+            //Act
+            MyList<int> result = myList1 - myList2;
+            //Assert
+            Assert.AreEqual(expected[2], result[2]);
+        }
+
+        [TestMethod]
+        public void MinusOverload_SubtractStringMyLists_MatchValuesRemoved()
+        {
+            //Arrange
+            MyList<string> myList1 = new MyList<string>() { "one", "two", "three", "four", "five", "six" };
+            MyList<string> myList2 = new MyList<string>() { "one", "three", "five" };
+            MyList<string> expected = new MyList<string>() { "two", "four", "six" };
+            //Act
+            MyList<string> result = myList1 - myList2;
+            //Assert
+            Assert.AreEqual(expected[2], result[2]);
+        }
+
+        [TestMethod]
+        public void MinusOverload_SubtractBoolMyLists_MatchValuesRemoved()
+        {
+            //Arrange
+            MyList<bool> myList1 = new MyList<bool>() { true, false, true, false, true };
+            MyList<bool> myList2 = new MyList<bool>() { false, false };
+            MyList<bool> expected = new MyList<bool>() { true, true, true };
+            //Act
+            MyList<bool> result = myList1 - myList2;
+            //Assert
+            Assert.AreEqual(expected[1], result[1]);
+        }
+
+        [TestMethod]
+        public void Add_Count_Increments()
+        {
+            //Arrange
+            MyList<int> list = new MyList<int>();
+            int valueToAdd = 2018;
+            int expectedLength = 1;
+            //Act
+            list.Add(valueToAdd);
+            //Assert
+            Assert.AreEqual(list.Count, expectedLength);
+        }
+
+
     }
 }
 
