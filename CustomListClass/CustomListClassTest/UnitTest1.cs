@@ -317,7 +317,73 @@ namespace CustomListClassTest
             Assert.AreEqual(list.Count, expectedLength);
         }
 
+        [TestMethod]
+        public void Zip_TwoArrays_AreZipped()
+        {
+            //Arrange
+            MyList<int> combinedLists = new MyList<int>();
+            MyList<int> expected = new MyList<int> { 1, 2, 3, 4, 5, 6 };
+            MyList<int> oddList = new MyList<int>() { 1, 3, 5 };
+            MyList<int> evenList = new MyList<int>() { 2, 4, 6 };
+            //Act
+            MyList<int> result = combinedLists.Zip(oddList, evenList);
+            //Assert 
+            Assert.AreEqual(result[19], 0);
+        }
 
+        [TestMethod]
+        public void Zip_Arrays_OfDifferentLength()
+        {
+            //Arrange
+            MyList<int> oddList = new MyList<int> { 1, 3, 5 };
+            MyList<int> evenList = new MyList<int> { 2, 4, 6, 8, 10 };
+            MyList<int> combinedLists = new MyList<int>();
+            MyList<int> expected = new MyList<int> { 1, 2, 3, 4, 5, 6 };
+            //Act
+            MyList<int> result = combinedLists.Zip(oddList, evenList);
+            //Assert
+            Assert.AreEqual(result[5], expected[5]);
+        }
+
+        [TestMethod]
+        public void Zip_StringArrays_AreZipped()
+        {
+            //Arrange
+            MyList<string> oddList = new MyList<string>() { "one", "three", "five" };
+            MyList<string> evenList = new MyList<string>() { "two", "four", "six" };
+            MyList<string> combinedLists = new MyList<string>();
+            MyList<string> expectedResult = new MyList<string>() { "one", "two", "three", "four", "five", "six" };
+            //Act
+            MyList<string> result = combinedLists.Zip(oddList, evenList);
+            //Assert
+            Assert.AreEqual(result[5], expectedResult[5]);
+        }
+
+        [TestMethod]
+        public void Zip_BoolArrays_AreZipped()
+        {
+            //Arrange
+            MyList<bool> trueList = new MyList<bool>() { true, true, true };
+            MyList<bool> falseList = new MyList<bool>() { false, false, false };
+            MyList<bool> combinedList = new MyList<bool>();
+            bool[] expectedResult = { true, false, true, false, true, false };
+            //Act
+            MyList<bool> result = combinedList.Zip(trueList, falseList);
+            //Assert
+            Assert.AreEqual(result[5], expectedResult[5]);
+        }
+
+        [TestMethod]
+        public void SortBonus_IntList_Reordered()
+        {
+            //Arrange
+            MyList<int> intList = new MyList<int>() { 5, 4, 3, 2, 1 };
+            MyList<int> expected = new MyList<int>() { 1, 2, 3, 4, 5 };
+            //Act
+            intList.SortBonus(intList);
+            //Assert
+            Assert.AreEqual(intList[4], expected[4]);
+        }
     }
 }
 
