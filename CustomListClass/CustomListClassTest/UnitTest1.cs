@@ -190,6 +190,42 @@ namespace CustomListClassTest
         //    //Assert
         //    Assert.AreEqual(intList.Count, 4);
         //}
+        [TestMethod]
+        public void ToString_Int_ToString()
+        {
+            //Arrange
+            MyList<int> intList = new MyList<int>() { 1, 2, 3 };
+            string expected = "123";
+            //Act
+            string result = intList.ToString();
+            //Assert
+            Assert.AreEqual(result, expected);
+        }
+
+        [TestMethod]
+        public void ToString_Bool_ToString()
+        {
+            //Arrange
+            MyList<bool> boolList = new MyList<bool>() { true, false, true };
+            string expected = "truefalsetrue";
+            //Act
+            string result = boolList.ToString();
+            //Assert
+            Assert.AreEqual(result, expected);
+        }
+
+        [TestMethod]
+        public void ToString_String_ToString()
+        {
+            //Arrange
+            MyList<string> stringList = new MyList<string>() { "I'm", "a", "string!" };
+            string expected = "I'mastring!";
+            //Act
+            string result = stringList.ToString();
+            //Assert
+            Assert.AreEqual(result, expected);
+        }
+
 
     }
 }
