@@ -306,9 +306,9 @@ namespace CustomListClassTest
             MyList<int> intList = new MyList<int>() { 5, 4, 3, 2, 1 };
             MyList<int> expected = new MyList<int>() { 1, 2, 3, 4, 5 };
             //Act
-            //            intList.SortBonus(intList);
+                        intList.SortBonus(intList);
             //Assert
-            //            Assert.AreEqual(intList[4], expected[4]);
+                        Assert.AreEqual(intList[4], expected[4]);
             Assert.IsFalse(true);
         }
     }

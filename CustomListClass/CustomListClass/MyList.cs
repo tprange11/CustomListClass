@@ -136,6 +136,25 @@ namespace CustomListClass
             return newString;
         }
 
+        public MyList<int> SortBonus(MyList<int> myList)
+        {
+            int tmp, minimum;
+            for (int i = 0; i < myList.count - 1; i++)
+            {
+                minimum = i;
+                for (int j = i + 1; j < myList.count; j++)
+                {
+                    if (myList[j] < myList[minimum])
+                    {
+                        minimum = j;
+                    }
+                }
+                tmp = myList[minimum];
+                myList[minimum] = myList[i];
+                myList[i] = tmp;
+            }
+            return myList;
+        }
 
         private bool CheckArrayCapacity()
         {
